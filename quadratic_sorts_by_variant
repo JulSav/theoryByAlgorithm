@@ -1,0 +1,52 @@
+from random import randint  # import random library for sorts
+
+# create and fill the array
+nums = [77, 89, 74, 68, 70, 49, 5, 62, 51]
+
+
+# bubble sort
+
+# for bubble sort we create two for-loops
+for i in range(len(nums)):  # create the first for-loop
+    for j in range(len(nums) - i - 1):  # create the second for-loop
+        if nums[j] > nums[j+1]:  # if the condition is met
+            nums[j], nums[j+1] = nums[j+1], nums[j]  # change two the nearest elements
+
+#  print the array
+print(nums)
+
+####################
+#  fill the array one more time
+nums.clear()
+nums = [77, 89, 74, 68, 70, 49, 5, 62, 51]
+
+# insertion sort
+for i in range(1, len(nums)):  # create the first for-loop
+    key = nums[i]  # key variable assign the i element in the array
+    j = i - 1  # assign j variable i, but on one less than i
+    while j >= 0 and nums[j] > key:  # create the seconds while-loop (we cam also use for-loop)
+        nums[j+1] = nums[j]  # assign next element now element
+        j -= 1  # subtract 1 from the j
+
+    nums[j + 1] = key  # assign the next j element our key
+
+#  print the array
+print(nums)
+##################
+
+#  fill the array one more time
+nums.clear()
+nums = [77, 89, 74, 68, 70, 49, 5, 62, 51]
+
+# selection sort
+for i in range(len(nums)-1):  # create the first for-loop
+    min = i  # take for the min index i index
+    for j in range(i+1, len(nums)):  # create the second for-loop
+        if nums[j] < nums[min]:  # if the number by index j is less than number by index min
+            min = j  # variable min we change on variable j
+    nums[i], nums[min] = nums[min], nums[i]  # and change place variables by index min amd i
+
+#  print the array
+print(nums)
+##########################
+
