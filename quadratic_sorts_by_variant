@@ -7,46 +7,64 @@ nums = [77, 89, 74, 68, 70, 49, 5, 62, 51]
 # bubble sort
 
 # for bubble sort we create two for-loops
+print("Bubble Sort")
+
+print("create first loop where i = from 0 to length of the array")
 for i in range(len(nums)):  # create the first for-loop
+    print("create the second loop where j = from 0 to length of the array - 1 - %d" % i)
     for j in range(len(nums) - i - 1):  # create the second for-loop
+        print("if nums[%d] > nums[%d]" % (j, j+1))
         if nums[j] > nums[j+1]:  # if the condition is met
+            print("change the elements between themselves")
             nums[j], nums[j+1] = nums[j+1], nums[j]  # change two the nearest elements
 
 #  print the array
-print(nums)
+print("Result of bubble sort is:", nums, end='\n\n')
 
 ####################
 #  fill the array one more time
 nums.clear()
 nums = [77, 89, 74, 68, 70, 49, 5, 62, 51]
-
+print("Insertion Sort")
 # insertion sort
+print("create first loop where i = from 1 to length of the array")
 for i in range(1, len(nums)):  # create the first for-loop
+    print("key =  nums[%d]", i)
     key = nums[i]  # key variable assign the i element in the array
+    print("j = i -1")
     j = i - 1  # assign j variable i, but on one less than i
+    print("create the while-loop where j >= 0 and nums[%d] > key" % j)
     while j >= 0 and nums[j] > key:  # create the seconds while-loop (we cam also use for-loop)
+        print("nums[%d]=nums[%d]"%(j+1, j))
         nums[j+1] = nums[j]  # assign next element now element
+        print("j-=1")
         j -= 1  # subtract 1 from the j
-
+    print("nums[%d] = key" % (j+1))
     nums[j + 1] = key  # assign the next j element our key
 
 #  print the array
-print(nums)
+print("Result of insertion sort is:", nums, end='\n\n')
 ##################
 
 #  fill the array one more time
 nums.clear()
 nums = [77, 89, 74, 68, 70, 49, 5, 62, 51]
+print("Selection Sort")
 
 # selection sort
+print("create first loop where i = from 0 to length of the array - 1")
 for i in range(len(nums)-1):  # create the first for-loop
+    print("min = i, wherein i = %d" % i)
     min = i  # take for the min index i index
+    print("create the second loop where j = from i+1 to length of the array")
     for j in range(i+1, len(nums)):  # create the second for-loop
+        print("nums[%d] < nums[%d]" % (j, min))
         if nums[j] < nums[min]:  # if the number by index j is less than number by index min
+            print("min = j, wherein j = %d" % j)
             min = j  # variable min we change on variable j
+    print("change the element with i index with element with min index")
     nums[i], nums[min] = nums[min], nums[i]  # and change place variables by index min amd i
 
 #  print the array
-print(nums)
+print("Result of selection sort is:", nums, end='\n\n')
 ##########################
-
