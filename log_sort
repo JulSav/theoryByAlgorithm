@@ -1,0 +1,103 @@
+from random import randint  # import random library for sorts
+import timeit
+
+
+# create and fill the arrays
+nums_var = [77, 89, 74, 68, 70, 49, 5, 62, 51]
+nums = []
+for i in range(10):
+    nums.append(randint(-100, 100))
+print("Start Rand Array:", nums)
+print("Start Variant Array:", nums_var)
+print("Realization of quicksort algorithm")
+
+#  function of quick sort
+def quick_sort(array):
+    # if the length of our array less than 2 we return the same array as input
+
+    if len(array) < 2:  # if in our array less than 2 elements we return this array
+        print("return the same array if length of the array less than 2")
+        return array
+
+    else:  # In other way
+        print(f"pivot = array[0], array[0] = {array[0]}")
+        pivot = array[0]  #  we take the pivot which is the first element of the array
+        print(f"less = [i for i in array[1:] if i <= pivot]")
+        less = [i for i in array[1:] if i <= pivot]  # then we count all elements that less than our pivot
+        print(f"greater = [i for i in array[1:] if i > pivot]")
+        greater = [i for i in array[1:] if i > pivot]  # and more than our pivot
+        print(f"return quick_sort(less) + [pivot] + quick_sort(greater)")
+        return quick_sort(less) + [pivot] + quick_sort(greater)  # recursion function which return less + pivot + more
+
+
+
+start = timeit.Timer()
+res = quick_sort(nums_var)
+print("Time: ", start.timeit())
+print("Sorted Rand Array:", quick_sort(nums))
+print("Sorted Variant Array:", res)
+
+
+nums_var = [77, 89, 74, 68, 70, 49, 5, 62, 51]
+nums = []
+for i in range(10):
+    nums.append(randint(-100, 100))
+print("Start Rand Array:", nums)
+print("Start Variant Array:", nums_var)
+
+# function of merge sort
+def merge_sort(array):
+    # if the length of our array less than 2 we return the same array as input
+    if len(array) < 2:
+        print("return the same array if length of the array less than 2")
+        return array
+
+    print("left = merge_sort(array[:len(array)//2])")
+    left = merge_sort(array[:len(array)//2])  # count via the same recursion function left part of the array
+    print("right = merge_sort(array[len(array)//2:len(array)])")
+    right = merge_sort(array[len(array)//2:len(array)])  # and right part
+    print("result = []")
+    result = []  # create an empty array
+    print("while len(left) > 0 and len(right) > 0:")
+    # create while-loop in which we will append to our array sorted elements
+    while len(left) > 0 and len(right) > 0:
+
+        if left[0] <= right[0]:
+            print("if left[0] <= right[0]:")
+            print("result.append(left[0])")
+            print("left = left[1:]")
+            result.append(left[0])
+            left = left[1:]  # left array shift one unit to the right
+        else:
+            print("else:")
+            print("result.append(right[0])")
+            print("right = right[1:]")
+            result.append(right[0])
+            right = right[1:]  # right array shift one unit to the right
+    if len(left) > 0:
+        print("len(left) > 0:")
+        print("result += left ")
+        result += left  # append the last part of left array
+    if len(right) > 0:
+        print("len(right) > 0:")
+        print("result += right ")
+        result += right  # append the last part of right array
+    return result
+
+
+
+
+start = timeit.Timer()
+res = merge_sort(nums_var)
+print("Time: ", start.timeit())
+print("Sorted Rand Array:", merge_sort(nums))
+print("Sorted Variant Array:", res)
+
+
+
+
+
+
+
+
+
