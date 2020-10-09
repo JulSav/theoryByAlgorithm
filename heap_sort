@@ -1,0 +1,71 @@
+from random import randint  # import random library for sorts
+import timeit
+
+# create and fill the arrays
+nums_var = [77, 89, 74, 68, 70, 49, 5, 62, 51]
+nums = []
+for i in range(10):
+    nums.append(randint(-100, 100))
+print("Start Rand Array:", nums)
+print("Start Variant Array:", nums_var)
+print("Realization of quicksort algorithm")
+
+
+def heapify(array, size, root):
+    print(f"largest = {root}")
+    largest = root  # initialize the biggest element as root
+    print(f"left = 2*{root} + 1")
+    left = 2*root + 1  # left node (formula in the array)
+    print(f"right = 2*{root} + 2")
+    right = 2*root + 2  # right node (formula in the array)
+
+    #print(f"if {left} < {size} and {array[largest]} < {array[left]}:")
+    # check if left element which is more than root exists
+    if left < size and array[largest] < array[left]:
+        print(f"largest = {left}")
+        largest = left
+
+    #print(f"if {right} < {size} and {array[largest]} < {array[right]}:")
+    # check if right element which is more than root exists
+    if right < size and array[largest] < array[right]:
+        print(f"largest = {right}")
+        largest = right
+
+    print(f"if {largest} != {root}:")
+    # Change root if largest not the same as root
+    if largest != root:
+        print(f"array[root],array[largest] = {array[largest]},{array[root]}")
+        array[root],array[largest] = array[largest],array[root]  # swap
+        # recursive heapify for root.
+        print(f"heapify({array}, {size}, {largest})")
+        heapify(array, size, largest)
+
+# heap_sort function
+def heap_sort(array):
+    print(f"size = {len(array)}")
+    size = len(array)
+
+    print(f"for i in range({size}, -1, -1):")
+    # Build max-heap.
+    for i in range(size, -1, -1):
+        print(f"heapify({array}, {size}, {i})")
+        heapify(array, size, i)  # for every i calling heapify function
+
+    print(f"for i in range({size - 1}, 0, -1):")
+    for i in range(size-1, 0, -1):
+        print(f"array[i], array[0] = {array[0]},{array[i]} ")
+        # change place of the root to the end
+        array[i], array[0] = array[0], array[i]  # swap
+        print(f"heapify({array}, i, 0)")
+        heapify(array, i, 0)  # and calling heapify function
+
+    print("Return result")
+    return array
+
+
+
+start = timeit.Timer()
+res_var = heap_sort(nums_var)
+print("Time: ", start.timeit())
+print("Sorted Variant Array:", res_var)
+print("Sorted Rand Array:", heap_sort(nums))
